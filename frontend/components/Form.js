@@ -10,18 +10,20 @@ export default class Form extends React.Component {
 
   inputHandler = e =>{
     e.preventDefault()
-    this.setState({input: e.target.value})
+    const {value} = e.target;
+    this.setState({input: value})
   }
 
   addItemHandler = e =>{
     e.preventDefault();
     this.props.addItem(this.state.input)
+    this.setState({input:''})
   }
 
   render() {
     return (
       <>  
-      <form>
+      <form onSubmit={this.addItemHandler}>
         <label>
           Enter new task
           <input type='text' name='task' value={this.state.input} onChange={this.inputHandler}/>
