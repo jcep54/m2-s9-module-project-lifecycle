@@ -26,7 +26,11 @@ export default class Form extends React.Component {
       <form onSubmit={this.addItemHandler}>
         <label>
           Enter new task
-          <input type='text' name='task' value={this.state.input} onChange={this.inputHandler}/>
+          <input 
+          type='text' 
+          name='task' 
+          value={this.state.input} 
+          onChange={this.inputHandler}/>
           </label>
         <button>Add</button>
         

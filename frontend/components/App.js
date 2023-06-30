@@ -74,7 +74,10 @@ export default class App extends React.Component {
       <div id='errors'>Error: {this.state.error || 'none'}</div>
       All My Todos:
       <TodoList 
-      toggleCompleted={this.toggleCompleted} todos={this.state.todos} toggleComplete={this.toggleDisplayComleted} displayCompleted={this.state.displayCompleted}
+      toggleCompleted={this.toggleCompleted} 
+      todos={this.state.todos} 
+      toggleComplete={this.toggleDisplayComleted} 
+      displayCompleted={this.state.displayCompleted}
       />
       
       <Form 
@@ -82,7 +85,10 @@ export default class App extends React.Component {
       displayCompleted={this.props.displayCompleted}
       toggleDisplayComleted ={this.toggleDisplayComleted}
       />
-     <button onClick={this.toggleDisplayComleted}>{this.state.displayCompleted? 'Hide': 'Show'} Clompeted</button>
+     <button onClick={this.toggleDisplayComleted}
+     >
+      {this.state.displayCompleted? 'Hide': 'Show'} Clompeted
+     </button>
       </>
     )
   }
