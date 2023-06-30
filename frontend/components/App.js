@@ -2,6 +2,7 @@ import React from 'react'
 import Form from './Form'
 import axios from 'axios';
 const URL = 'http://localhost:9000/api/todos'
+import TodoList from './TodoList';
 
 
 
@@ -54,7 +55,9 @@ export default class App extends React.Component {
   }
   toggleDisplayComleted = e =>{
     e.preventDefault();
+    
     this.setState({...this.state, displayCompleted: !this.state.displayCompleted})
+    console.log(this.state.displayCompleted)
   }
 
   clearHandler = e =>{
@@ -67,19 +70,19 @@ export default class App extends React.Component {
   render() {
     return (
       <>
+      
       <div id='errors'>Error: {this.state.error || 'none'}</div>
       All My Todos:
-      {
-        this.state.todos.reduce( (acc, task) => {
-         if(this.state.displayCompleted || !task.completed){
-          return acc.concat(<p onClick={this.toggleCompleted(task.id)} key={task.id}>{task.name} {task.completed? ' ✅':''}</p>)
-         }
-         return acc
-        }, [])
-      }
-      {/* return <p onClick={this.toggleCompleted(task.id)} key={task.id}>{task.name} {task.completed? ' ✅':''}</p> */}
-      <Form addItem={this.postNewTodo}/>
-      <button onClick={this.toggleDisplayComleted}>{this.state.displayCompleted? 'Hide': 'Show'} Clompeted</button>
+      <TodoList 
+      toggleCompleted={this.toggleCompleted} todos={this.state.todos} toggleComplete={this.toggleDisplayComleted} displayCompleted={this.state.displayCompleted}
+      />
+      
+      <Form 
+      addItem={this.postNewTodo}
+      displayCompleted={this.props.displayCompleted}
+      toggleDisplayComleted ={this.toggleDisplayComleted}
+      />
+     <button onClick={this.toggleDisplayComleted}>{this.state.displayCompleted? 'Hide': 'Show'} Clompeted</button>
       </>
     )
   }
